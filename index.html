@@ -1,212 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Max City Website</title>
-    <style>
-        /* Global Styles */
-        body {
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            margin: 0;
-            background: linear-gradient(to right, #1a1a2e, #16213e);
-            color: white;
-        }
-
-        /* Loading Screen */
-        #loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: black;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3em;
-            font-weight: bold;
-            z-index: 1000;
-        }
-
-        /* Main Content (Hidden Initially) */
-        #main-content {
-            display: none;
-        }
-
-        /* Header */
-        h1 {
-            font-size: 2.5em;
-            margin-top: 20px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* Countdown Section */
-        .countdown-container {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            padding: 20px;
-        }
-
-        .countdown-box {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 12px;
-            width: 300px;
-            text-align: center;
-            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .countdown-box:hover {
-            transform: scale(1.05);
-        }
-
-        .countdown {
-            font-size: 1.8em;
-            font-weight: bold;
-            margin-top: 10px;
-            color: #ffcc00;
-        }
-
-        /* Navigation Bar */
-        .nav {
-            background: #0f3460;
-            padding: 15px;
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .nav a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.2em;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-
-        .nav a:hover {
-            color: #ffcc00;
-        }
-
-        /* City Info Section */
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
-        }
-
-        .flag {
-            width: 120px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-
-        .map {
-            width: 100%;
-            height: 300px;
-            border-radius: 10px;
-            margin-top: 10px;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .countdown-container {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Max City - Welcome</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+    }
+    body {
+      background: linear-gradient(to right, #000428, #004e92);
+      color: white;
+    }
+    header {
+      background-color: #003366;
+      padding: 20px;
+      text-align: center;
+      font-size: 2.5em;
+      font-weight: bold;
+    }
+    #top-section {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+    }
+    .info-box {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      width: 23%;
+    }
+    h3 {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 1.2em;
+    }
+    nav {
+      background-color: #004e92;
+      display: flex;
+      justify-content: center;
+      padding: 15px;
+      gap: 30px;
+    }
+    nav a {
+      color: white;
+      font-size: 1.2em;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #ffcc00;
+    }
+    section {
+      padding: 80px 10%;
+      text-align: center;
+    }
+    h2 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+    footer {
+      background-color: #003366;
+      text-align: center;
+      padding: 20px;
+      font-size: 1em;
+    }
+    /* Loading Screen */
+    #loading-screen {
+      background-color: #000428;
+      color: #ffcc00;
+      font-size: 3em;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      z-index: 9999;
+    }
+  </style>
 </head>
-<body>
+<body onload="startTimers()">
 
-    <!-- Loading Screen -->
-    <div id="loading-screen">MAX CITY</div>
+  <!-- Loading Screen -->
+  <div id="loading-screen">MAX CITY</div>
 
-    <div id="main-content">
-        <h1>Max City </h1>
+  <!-- Header Section -->
+  <header>Welcome to Max City 🏙️</header>
 
-        <div class="countdown-container">
-            <div class="countdown-box">
-                <h2>Max City Election (May 2)</h2>
-                <div id="countdown1" class="countdown"></div>
-            </div>
-
-            <div class="countdown-box">
-                <h2>Lockdown (March 19 to April 2)</h2>
-                <div id="countdown2" class="countdown"></div>
-            </div>
-        </div>
-
-        <!-- Navigation Bar -->
-        <div class="nav">
-            <a href="#">Home</a>
-            <a href="#">Tourism</a>
-            <a href="#">Culture</a>
-            <a href="#">Economy</a>
-        </div>
-
-        <!-- City Info Section -->
-        <div class="container">
-            <h2>Welcome to Max City 🏙️</h2>
-            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/fc/Flag_of_Mexico.svg/640px-Flag_of_Mexico.svg.png" class="flag" alt="Flag of Max City">
-            <p><strong>Capital:</strong> Max City</p>
-            <p><strong>Population:</strong> 24</p>
-            <p><strong>Official Language:</strong> Sinhala/English</p>
-            <p><strong>Currency:</strong> Max Dollar (MXD)</p>
-            <p><strong>President:</strong>Kavitha Bandara</p>
-
-            <h3>Map of Max City</h3>
-            <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509707!2d144.9537353153151!3d-37.81627927975161!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d5df2b1f9fb%3A0x5045675218cda0!2sMelbourne%20VIC!5e0!3m2!1sen!2sau!4v1642998191183!5m2!1sen!2sau" allowfullscreen="" loading="lazy"></iframe>
-        </div>
+  <!-- Top Section with Timers, Weather, and Clock -->
+  <div id="top-section">
+    <div class="info-box">
+      <h3>Current Time ⏰</h3>
+      <p id="clock">Loading...</p>
     </div>
+    <div class="info-box">
+      <h3>Weather in Max City ⛅</h3>
+      <p id="weather">Loading weather data...</p>
+    </div>
+    <div class="info-box">
+      <h3>Lockdown Countdown 🛑</h3>
+      <p id="lockdown-timer">Calculating...</p>
+    </div>
+    <div class="info-box">
+      <h3>Election Countdown 🗳️</h3>
+      <p id="election-timer">Calculating...</p>
+    </div>
+  </div>
 
-    <script>
-        // Hide main content and show loading screen for 3 seconds
-        setTimeout(() => {
-            document.getElementById("loading-screen").style.display = "none";
-            document.getElementById("main-content").style.display = "block";
-        }, 3000);
+  <!-- Navigation -->
+  <nav>
+    <a href="#about">About</a>
+    <a href="#attractions">Attractions</a>
+    <a href="#news">News</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-        function updateCountdown(targetDate, elementId) {
-            const now = new Date().getTime();
-            const timeLeft = targetDate - now;
+  <!-- About Section -->
+  <section id="about">
+    <h2>About Max City</h2>
+    <p>Max City is a thriving metropolis known for its modern skyscrapers, lush parks, and cultural heritage.</p>
+  </section>
 
-            if (timeLeft > 0) {
-                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+  <!-- Attractions Section -->
+  <section id="attractions">
+    <h2>Explore Our Attractions</h2>
+    <ul>
+      <li>🏰 Max City Castle</li>
+      <li>🌳 Central Park</li>
+      <li>🛍️ Max Plaza Shopping Center</li>
+      <li>🎭 Max Theater</li>
+    </ul>
+  </section>
 
-                document.getElementById(elementId).innerHTML = 
-                    `${days}d ${hours}h ${minutes}m ${seconds}s`;
-            } else {
-                document.getElementById(elementId).innerHTML = "Time's up!";
-            }
-        }
+  <!-- News Section -->
+  <section id="news">
+    <h2>Latest News</h2>
+    <p>📢 Max City Election Day: <strong>May 2nd</strong></p>
+    <p>⚠️ Lockdown: <strong>March 19th to April 2nd</strong></p>
+  </section>
 
-        function startCountdowns() {
-            const electionDate = new Date("May 2, 2025 00:00:00").getTime();
-            const lockdownDate = new Date("April 2, 2025 00:00:00").getTime();
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>📧 Email: support@maxcity.com</p>
+  </section>
 
-            setInterval(() => {
-                updateCountdown(electionDate, "countdown1");
-                updateCountdown(lockdownDate, "countdown2");
-            }, 1000);
-        }
+  <!-- Footer Section -->
+  <footer>
+    <p>&copy; 2025 Max City. All Rights Reserved.</p>
+  </footer>
 
-        startCountdowns();
-    </script>
+  <!-- JavaScript Section -->
+  <script>
+    // Remove loading screen after 3 seconds
+    setTimeout(() => {
+      document.getElementById('loading-screen').style.display = 'none';
+    }, 3000);
 
+    // Live Clock
+    function updateClock() {
+      const now = new Date();
+      document.getElementById("clock").textContent = now.toLocaleTimeString();
+    }
+    setInterval(updateClock, 1000);
+
+    // Fetch Weather Data
+    function getWeather() {
+      const apiKey = 'a1309f6353141c9508156a5918e15a89'; // Replace with your actual OpenWeatherMap API key
+      const city = 'Kandy';
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          const temp = data.main.temp;
+          const description = data.weather[0].description;
+          const icon = data.weather[0].icon;
+          document.getElementById('weather').innerHTML = `
+            <img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="Weather icon">
+            ${temp}°C | ${description}
+          `;
+        })
+        .catch(() => document.getElementById('weather').textContent = 'Error fetching weather data');
+    }
+    getWeather();
+
+    // Countdown Timer
+    function startTimers() {
+      function countdown(date, elementId) {
+        const timer = setInterval(() => {
+          const now = new Date();
+          const timeLeft = date - now;
+          if (timeLeft <= 0) {
+            document.getElementById(elementId).textContent = "Event is happening now!";
+            clearInterval(timer);
+          } else {
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            document.getElementById(elementId).textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+          }
+        }, 1000);
+      }
+
+      countdown(new Date('April 2, 2025 00:00:00'), 'lockdown-timer');
+      countdown(new Date('May 2, 2025 00:00:00'), 'election-timer');
+    }
+  </script>
 </body>
 </html>
